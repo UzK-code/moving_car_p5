@@ -3,6 +3,7 @@ let carX = 0;
 let carY;
 let carSpeed = 3;
 
+
 function setup() {
   createCanvas(800, 400);
   // Start car in the middle vertically
@@ -15,22 +16,32 @@ function draw() {
   background(135, 206, 235);
 
   // ===== BEGIN BILLBOARD HERE =====
+  fill(150, 20, 50);
+  rect(310, 130, 20, 100);
+  fill(150, 20, 50);
+  rect(390, 130, 20, 100);
+  fill(0, 0,  0);
+  rect(290, 80, 140, 100);
+  fill('white');
+  textSize(30);
+  text('Dead End', 293, 140);
   
-  // ===== END BILLBOARD HERE =====
+  
+       // ===== END BILLBOARD HERE =====
 
   // ===== DRAW GRASS =====
   fill(34, 139, 34); // Green grass
-  rect(0, height / 2 + 50, width, height);
+  rect(0, height / 2 + 50, width / 2 + 220, height);
 
   // ===== DRAW ROAD =====
   fill(70, 70, 70); // Gray road
-  rect(0, carY + 30, width, 60);
+  rect(0, height / 2 + 30, width / 2 + 210, 60);
   
   // Road lines (dashed yellow line)
   stroke(255, 255, 0);
   strokeWeight(3);
-  for (let i = 0; i < width; i += 40) {
-    line(i, carY + 60, i + 20, carY + 60);
+  for (let i = 0; i < width / 2 + 200; i += 40) {
+    line(i, height / 2 + 60, i + 20, height / 2 + 60);
   }
   noStroke();
 
@@ -41,8 +52,18 @@ function draw() {
   carX = carX + carSpeed;
 
   // Reset car when it goes off the right side
+  
+  if (carX > width / 2 + 200) {
+    carY = carY + carSpeed + 20;
+    fill(255);
+    textSize(20);
+    text('AHHHHAHHH', 430, carY + carSpeed + 20);
+    
+  }
+  
   if (carX > width + 50) {
     carX = -100;
+    carY = height / 2;
   }
 }
 
@@ -74,4 +95,6 @@ function drawCar(x, y) {
   // Headlight (yellow)
   fill(255, 255, 0);
   circle(x + 95, y + 15, 8);
+  
 }
+
